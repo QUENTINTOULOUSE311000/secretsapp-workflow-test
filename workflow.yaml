@@ -9,7 +9,7 @@ workflow:
   readme: null
 dependencies:
   providers:
-  - anthropic
+  - openai
   models:
   - provider: openai
     model: gpt-5
@@ -42,6 +42,7 @@ graph:
       y: 126.48796307212237
     data:
       label: Agent IA
+      api_key: sk-test-secret
       kind: agent
       model: openai/gpt-5
       prompt: "Transforme la demande reçue en JSON valide.\n\nRetourne UNIQUEMENT ce format :\n{\n  \"campaign\": \"nom de\
