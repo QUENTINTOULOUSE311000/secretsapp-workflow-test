@@ -9,7 +9,7 @@ workflow:
   readme: null
 dependencies:
   providers:
-  - openai
+  - anthropic
   models:
   - provider: openai
     model: gpt-5
