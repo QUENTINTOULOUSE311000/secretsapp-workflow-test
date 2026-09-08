@@ -1,0 +1,85 @@
+format: secretsapp.workflow
+format_version: 2
+workflow:
+  name: Analyse SEO (fork)
+  slug: analyse-seo-fork
+  description: Analyse automatiquement un site internet
+  category: null
+  tags: []
+  readme: null
+dependencies:
+  providers:
+  - openai
+  models:
+  - provider: openai
+    model: gpt-5
+  tools:
+  - webhook
+  capabilities:
+  - human_approval
+  unresolved: []
+graph:
+  nodes:
+  - id: trigger-1
+    type: input
+    position:
+      x: 281.7833523463192
+      y: 50.41436087851062
+    data:
+      label: Déclencheur
+      kind: trigger
+  - id: output-1
+    type: output
+    position:
+      x: 281.1165920562372
+      y: 356.9840757868367
+    data:
+      label: Résultat
+      kind: output
+  - id: agent-1788726762447
+    position:
+      x: 175.91557248864402
+      y: 126.48796307212237
+    data:
+      label: Agent IA
+      kind: agent
+      model: openai/gpt-5
+      prompt: "Transforme la demande reçue en JSON valide.\n\nRetourne UNIQUEMENT ce format :\n{\n  \"campaign\": \"nom de\
+        \ la campagne\",\n  \"city\": \"ville\",\n  \"message\": \"résumé très court\"\n}\n\nAucun texte avant ou après le\
+        \ JSON."
+  - id: human-1788727537134
+    position:
+      x: 280.2130831143505
+      y: 208.56765883324672
+    data:
+      label: Validation humaine
+      kind: human
+      instructions: Vérifie les données avant leur transmission au service externe.
+  - id: tool-1788728174515
+    position:
+      x: 280.5020990836437
+      y: 275.78800064305705
+    data:
+      label: Outil
+      kind: tool
+      provider: webhook
+      action: POST
+      url: https://httpbin.org/post
+  edges:
+  - id: xy-edge__trigger-1-agent-1788726762447
+    source: trigger-1
+    target: agent-1788726762447
+  - id: xy-edge__agent-1788726762447-human-1788727537134
+    source: agent-1788726762447
+    target: human-1788727537134
+  - id: xy-edge__human-1788727537134-tool-1788728174515
+    source: human-1788727537134
+    target: tool-1788728174515
+  - id: xy-edge__tool-1788728174515-output-1
+    source: tool-1788728174515
+    target: output-1
+source:
+  author_username: quentin
+  workflow_slug: analyse-seo-fork
+  version_number: null
+  exported_at: '2026-09-08T06:21:03.974166Z'
