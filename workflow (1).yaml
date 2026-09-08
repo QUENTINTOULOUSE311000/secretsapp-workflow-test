@@ -1,0 +1,72 @@
+format: secretsapp.workflow
+format_version: 2
+workflow:
+  name: Analyse SEO (fork) (fork)
+  slug: analyse-seo-fork-fork-7-2-2
+  description: Analyse automatiquement un site internet
+  category: marketing
+  tags:
+  - seo
+  - openai
+  - automatisation
+  readme: '# Workflow SEO
+
+
+    Ce workflow analyse une demande SEO puis génère une réponse structurée.
+
+
+    ## Utilisation
+
+
+    1. Saisir la demande
+
+    2. Lancer le workflow
+
+    3. Vérifier le résultat'
+dependencies:
+  providers: []
+  models: []
+  tools:
+  - webhook
+  capabilities: []
+  unresolved: []
+graph:
+  nodes:
+  - id: trigger-1
+    type: input
+    position:
+      x: 281.7833523463192
+      y: 50.41436087851062
+    data:
+      label: Déclencheur
+      kind: trigger
+  - id: output-1
+    type: output
+    position:
+      x: 281.1165920562372
+      y: 356.9840757868367
+    data:
+      label: Résultat
+      kind: output
+  - id: tool-1788728174515
+    position:
+      x: 280.5020990836437
+      y: 275.78800064305705
+    data:
+      label: Outil
+      kind: tool
+      provider: webhook
+      action: POST
+      url: https://httpbin.org/post
+  edges:
+  - id: xy-edge__tool-1788728174515-output-1
+    source: tool-1788728174515
+    target: output-1
+  - id: xy-edge__trigger-1-tool-1788728174515
+    source: trigger-1
+    target: tool-1788728174515
+source:
+  author_username: quentin
+  workflow_slug: analyse-seo-fork-fork-7-2-2
+  version_number: null
+  exported_at: '2026-09-08T05:23:44.995093Z'
